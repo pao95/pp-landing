@@ -11,9 +11,10 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import "./App.css";
-import { BASE_URL, PROVIDER_REDIRECTION_URL } from "./config";
+import { BASE_URL, PROVIDER_REDIRECTION_URL, USE_PROXY } from "./config";
 
 const TOKEN_ENDPOINT = `${BASE_URL}/user-service/api/v1/external/generate-token`;
+const LOAN_EVALUATION_ENDPOINT = `${BASE_URL}/landing-service/api/v1/loan-evaluation`;
 
 function App() {
   const [isSecondButtonEnabled, setIsSecondButtonEnabled] = useState(false);
@@ -34,14 +35,18 @@ function App() {
     setTokenError(null);
     setIsGeneratingToken(true);
     try {
-      const response = await axios.get(
-        TOKEN_ENDPOINT,
-        {
-          headers: {
-            "X-Request-ID": "1",
-          },
-        }
-      );
+      let url = TOKEN_ENDPOINT;
+      
+      // Si usamos proxy, redirigir a la función de Netlify
+      if (USE_PROXY) {
+        url = `/.netlify/functions/proxy?path=/user-service/api/v1/external/generate-token`;
+      }
+
+      const response = await axios.get(url, {
+        headers: {
+          "X-Request-ID": "1",
+        },
+      });
       
       if (response.data && response.data.token) {
         setToken(response.data.token);
@@ -77,8 +82,15 @@ function App() {
     setError(null);
     setIsLoading(true);
     try {
+      let url = LOAN_EVALUATION_ENDPOINT;
+      
+      // Si usamos proxy, redirigir a la función de Netlify
+      if (USE_PROXY) {
+        url = `/.netlify/functions/proxy?path=/landing-service/api/v1/loan-evaluation`;
+      }
+
       const response = await axios.post(
-        `${BASE_URL}/landing-service/api/v1/loan-evaluation`,
+        url,
         {
           dni: "12345677",
           cuil: "54653454434",
