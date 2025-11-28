@@ -182,7 +182,7 @@ function App() {
           gutterBottom
           sx={{ color: "#222" }}
         >
-          Banco Macro
+          RapiCompras
         </Typography>
 
         <Card sx={{ padding: "16px" }}>
