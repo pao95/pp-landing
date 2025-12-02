@@ -36,7 +36,7 @@ function App() {
     setIsGeneratingToken(true);
     try {
       let url = TOKEN_ENDPOINT;
-      
+
       // Si usamos proxy, redirigir a la función de Netlify
       if (USE_PROXY) {
         url = `/.netlify/functions/proxy?path=/user-service/api/v1/external/generate-token`;
@@ -47,7 +47,7 @@ function App() {
           "X-Request-ID": "1",
         },
       });
-      
+
       if (response.data && response.data.token) {
         setToken(response.data.token);
         console.log("Token generado exitosamente");
@@ -58,7 +58,9 @@ function App() {
       console.error("Error generando token:", err);
       if (axios.isAxiosError(err)) {
         setTokenError(
-          `Error: ${err.response?.status} - ${err.response?.statusText || err.message}`
+          `Error: ${err.response?.status} - ${
+            err.response?.statusText || err.message
+          }`
         );
       } else {
         setTokenError("Error al generar el token firmado");
@@ -83,7 +85,7 @@ function App() {
     setIsLoading(true);
     try {
       let url = LOAN_EVALUATION_ENDPOINT;
-      
+
       // Si usamos proxy, redirigir a la función de Netlify
       if (USE_PROXY) {
         url = `/.netlify/functions/proxy?path=/landing-service/api/v1/loan-evaluation`;
@@ -109,7 +111,6 @@ function App() {
           headers: {
             "Content-Type": "application/json",
             "X-Request-ID": "1",
-            Authorization: `Bearer ${token}`,
           },
           withCredentials: false,
         }
