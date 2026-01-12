@@ -71,10 +71,10 @@ function App() {
   };
 
   const handleFirstButtonClick = async () => {
-    if (!token) {
-      setError("Por favor, genera el token firmado primero");
-      return;
-    }
+    // if (!token) {
+    //   setError("Por favor, genera el token firmado primero");
+    //   return;
+    // }
 
     if (!cuitComercio) {
       setError("Por favor, ingresa el CUIT del comercio");
