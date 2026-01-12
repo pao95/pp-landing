@@ -21,7 +21,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingToken, setIsGeneratingToken] = useState(false);
   const [token, setToken] = useState<string>("");
-  const [cuitComercio, setCuitComercio] = useState<string>("65457203161");
+  const [cuitComercio, setCuitComercio] = useState<string>("12345678901");
   const [loanData, setLoanData] = useState<{
     loanApplicationId: string;
     dni: string;
@@ -94,18 +94,16 @@ function App() {
       const response = await axios.post(
         url,
         {
-          dni: "12345677",
-          cuil: "54653454434",
-          genero: "M",
-          fechaNacimiento: "1990-01-15",
-          nombre: "Juan",
-          apellido: "Pérez",
-          cuitComercio: cuitComercio,
-          idSucursal: "001",
-          rubro: "Retail",
-          categoria: "Category A",
-          cuilUsuario: "20987654321",
-          idSolicitudRapicompras: "RC123456",
+          "dni": "12345677",
+          "cuil": "20123456779",
+          "genero": "M",
+          "fecha_nacimiento": "1990-01-15",
+          "nombre": "Mirco",
+          "apellido": "Santoni",
+          "cuit_comercio": cuitComercio
+          "id_sucursal": "001",
+          "dni_usuario": "34437311",
+          "id_onscore": "RC123456",
         },
         {
           headers: {
