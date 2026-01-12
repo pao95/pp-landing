@@ -71,10 +71,10 @@ function App() {
   };
 
   const handleFirstButtonClick = async () => {
-    // if (!token) {
-    //   setError("Por favor, genera el token firmado primero");
-    //   return;
-    // }
+    if (!token) {
+      setError("Por favor, genera el token firmado primero");
+      return;
+    }
 
     if (!cuitComercio) {
       setError("Por favor, ingresa el CUIT del comercio");
@@ -222,7 +222,7 @@ function App() {
           color="success"
           onClick={handleGenerateToken}
           fullWidth
-          // disabled={isGeneratingToken}
+          disabled={isGeneratingToken}
           sx={{ height: 50, fontWeight: 600, fontSize: 16, mt: 2 }}
         >
           {isGeneratingToken ? (
@@ -272,7 +272,7 @@ function App() {
           color="primary"
           onClick={handleFirstButtonClick}
           fullWidth
-          // disabled={isLoading || !token}
+          disabled={isLoading || !token}
           sx={{ height: 50, fontWeight: 600, fontSize: 18, mt: 2 }}
         >
           {isLoading ? (
