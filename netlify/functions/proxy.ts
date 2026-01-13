@@ -2,8 +2,7 @@ import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
 // Usar variable de entorno o valor por defecto
 const BACKEND_URL =
-  process.env.BACKEND_URL ||
-  "http://consumer-administration-dev-alb-639243243.us-east-1.elb.amazonaws.com";
+  process.env.BACKEND_URL || "https://consumer-api-dev.sucuaccicom.com.ar";
 
 // Timeout para las peticiones (en ms)
 const FETCH_TIMEOUT = 30000;

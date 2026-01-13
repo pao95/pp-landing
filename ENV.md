@@ -6,7 +6,7 @@ Crea un archivo `.env.local` en la raíz del proyecto con las siguientes variabl
 
 ```env
 # Base URL del backend
-VITE_BASE_URL=http://consumer-administration-dev-alb-639243243.us-east-1.elb.amazonaws.com
+VITE_BASE_URL=https://consumer-api-dev.sucuaccicom.com.ar
 
 # URL de redirección del proveedor
 VITE_PROVIDER_REDIRECTION_URL=https://tu-frontend-url.com
@@ -23,7 +23,7 @@ En Netlify, configura las siguientes variables de entorno en:
 **Site configuration** → **Environment variables**
 
 ```env
-VITE_BASE_URL=http://consumer-administration-dev-alb-639243243.us-east-1.elb.amazonaws.com
+VITE_BASE_URL=https://consumer-api-dev.sucuaccicom.com.ar
 VITE_PROVIDER_REDIRECTION_URL=https://tu-frontend-url.com
 VITE_USE_PROXY=true
 ```

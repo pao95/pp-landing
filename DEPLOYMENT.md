@@ -27,7 +27,7 @@ Ve a tu proyecto en Netlify:
 2. Agrega las siguientes variables:
 
 ```
-VITE_BASE_URL=http://consumer-administration-dev-alb-639243243.us-east-1.elb.amazonaws.com
+VITE_BASE_URL=https://consumer-api-dev.sucuaccicom.com.ar
 VITE_PROVIDER_REDIRECTION_URL=https://tu-frontend-url.com
 VITE_USE_PROXY=true
 ```
@@ -57,7 +57,7 @@ Luego pushea a tu repositorio o despliega directamente desde Netlify.
 Para desarrollo local, crea un archivo `.env.local`:
 
 ```env
-VITE_BASE_URL=http://consumer-administration-dev-alb-639243243.us-east-1.elb.amazonaws.com
+VITE_BASE_URL=https://consumer-api-dev.sucuaccicom.com.ar
 VITE_PROVIDER_REDIRECTION_URL=http://localhost:5173
 VITE_USE_PROXY=false
 ```
