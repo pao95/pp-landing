@@ -38,9 +38,9 @@ function App() {
       let url = TOKEN_ENDPOINT;
 
       // Si usamos proxy, redirigir a la función de Netlify
-      if (USE_PROXY) {
-        url = `/.netlify/functions/proxy?path=/user-service/api/v1/external/generate-token`;
-      }
+      // if (USE_PROXY) {
+      //   url = `/.netlify/functions/proxy?path=/user-service/api/v1/external/generate-token`;
+      // }
 
       const response = await axios.get(url, {
         headers: {
@@ -87,9 +87,9 @@ function App() {
       let url = LOAN_EVALUATION_ENDPOINT;
 
       // Si usamos proxy, redirigir a la función de Netlify
-      if (USE_PROXY) {
-        url = `/.netlify/functions/proxy?path=/landing-service/api/v1/loan-evaluation`;
-      }
+      // if (USE_PROXY) {
+      //   url = `/.netlify/functions/proxy?path=/landing-service/api/v1/loan-evaluation`;
+      // }
 
       const response = await axios.post(
         url,
