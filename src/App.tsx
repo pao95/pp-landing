@@ -21,7 +21,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingToken, setIsGeneratingToken] = useState(false);
   const [token, setToken] = useState<string>("");
-  const [cuitComercio, setCuitComercio] = useState<string>("12345678901");
+  const [idOnscore, setIdOnscore] = useState<string>("ONS-987654322");
   const [loanData, setLoanData] = useState<{
     loanApplicationId: string;
     dni: string;
@@ -76,7 +76,7 @@ function App() {
       return;
     }
 
-    if (!cuitComercio) {
+    if (!idOnscore) {
       setError("Por favor, ingresa el CUIT del comercio");
       return;
     }
@@ -102,12 +102,13 @@ function App() {
           apellido: "Santoni",
           id_sucursal: "001",
           dni_usuario: "34437311",
-          id_onscore: "ONS-987654322",
+          id_onscore: idOnscore,
         },
         {
           headers: {
             "Content-Type": "application/json",
             "X-Request-ID": "1",
+            Authorization: `Bearer ${token}`,
           },
           withCredentials: false,
         }
@@ -207,12 +208,12 @@ function App() {
         </Card>
 
         <TextField
-          label="CUIT del Comercio"
+          label="ID onscore"
           variant="outlined"
           fullWidth
-          value={cuitComercio}
-          onChange={(e) => setCuitComercio(e.target.value)}
-          placeholder="Ingresa el CUIT del comercio"
+          value={idOnscore}
+          onChange={(e) => setIdOnscore(e.target.value)}
+          placeholder="Ingresa el ID onscore"
           sx={{ mt: 2 }}
         />
 
