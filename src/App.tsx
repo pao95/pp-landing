@@ -22,6 +22,7 @@ function App() {
   const [isGeneratingToken, setIsGeneratingToken] = useState(false);
   const [token, setToken] = useState<string>("");
   const [idOnscore, setIdOnscore] = useState<string>("ONS-987654322");
+  const [dni, setDni] = useState<string>("12345678");
   const [loanData, setLoanData] = useState<{
     loanApplicationId: string;
     dni: string;
@@ -94,7 +95,7 @@ function App() {
       const response = await axios.post(
         url,
         {
-          dni: "12345678",
+          dni: dni,
           cuil: "20123456779",
           genero: "M",
           fecha_nacimiento: "1990-01-15",
@@ -206,6 +207,16 @@ function App() {
             </Typography>
           </Box>
         </Card>
+
+        <TextField
+          label="DNI"
+          variant="outlined"
+          fullWidth
+          value={dni}
+          onChange={(e) => setDni(e.target.value)}
+          placeholder="Ingresa el DNI"
+          sx={{ mt: 2 }}
+        />
 
         <TextField
           label="ID onscore"
