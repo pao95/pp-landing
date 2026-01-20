@@ -94,14 +94,14 @@ function App() {
       const response = await axios.post(
         url,
         {
-          dni: "12345678",
-          cuil: "20123456779",
+          dni: "41019295",
+          cuil: "20410192951",
           genero: "M",
-          fecha_nacimiento: "1990-01-15",
-          nombre: "Mirco",
-          apellido: "Santoni",
+          fecha_nacimiento: "1998-09-22",
+          nombre: "Santos",
+          apellido: "Virga",
           id_sucursal: "001",
-          dni_usuario: "34437311",
+          dni_usuario: "41019295",
           id_onscore: idOnscore,
         },
         {
