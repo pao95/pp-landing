@@ -23,6 +23,7 @@ function App() {
   const [token, setToken] = useState<string>("");
   const [idOnscore, setIdOnscore] = useState<string>("ONS-987654322");
   const [dni, setDni] = useState<string>("12345678");
+  const [cuil, setCuil] = useState<string>("20123456779");
   const [loanData, setLoanData] = useState<{
     loanApplicationId: string;
     dni: string;
@@ -96,7 +97,7 @@ function App() {
         url,
         {
           dni: dni,
-          cuil: "20123456779",
+          cuil: cuil,
           genero: "M",
           fecha_nacimiento: "1990-01-15",
           nombre: "Mirco",
@@ -200,7 +201,7 @@ function App() {
               <b>DNI:</b> {dni}
             </Typography>
             <Typography variant="body1">
-              <b>CUIL:</b> 20123456771
+              <b>CUIL:</b> {cuil}
             </Typography>
             <Typography variant="body1">
               <b>Género:</b> Masculino
@@ -215,6 +216,16 @@ function App() {
           value={dni}
           onChange={(e) => setDni(e.target.value)}
           placeholder="Ingresa el DNI"
+          sx={{ mt: 2 }}
+        />
+
+        <TextField
+          label="CUIL"
+          variant="outlined"
+          fullWidth
+          value={cuil}
+          onChange={(e) => setCuil(e.target.value)}
+          placeholder="Ingresa el CUIL"
           sx={{ mt: 2 }}
         />
 
