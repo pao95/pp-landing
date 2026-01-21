@@ -197,7 +197,7 @@ function App() {
               <b>Apellido:</b> Pérez
             </Typography>
             <Typography variant="body1">
-              <b>DNI:</b> 12345677
+              <b>DNI:</b> {dni}
             </Typography>
             <Typography variant="body1">
               <b>CUIL:</b> 20123456771
