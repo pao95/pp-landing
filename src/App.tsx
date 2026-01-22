@@ -24,6 +24,8 @@ function App() {
   const [idOnscore, setIdOnscore] = useState<string>("ONS-987654322");
   const [dni, setDni] = useState<string>("12345678");
   const [cuil, setCuil] = useState<string>("20123456779");
+  const [nombre, setNombre] = useState<string>("Mirco");
+  const [apellido, setApellido] = useState<string>("Santoni");
   const [loanData, setLoanData] = useState<{
     loanApplicationId: string;
     dni: string;
@@ -100,8 +102,8 @@ function App() {
           cuil: cuil,
           genero: "M",
           fecha_nacimiento: "1990-01-15",
-          nombre: "Mirco",
-          apellido: "Santoni",
+          nombre: nombre,
+          apellido: apellido,
           id_sucursal: "001",
           dni_usuario: "34437311",
           id_onscore: idOnscore,
@@ -186,16 +188,16 @@ function App() {
           RapiCompras
         </Typography>
 
-        <Card sx={{ padding: "16px" }}>
+        {/* <Card sx={{ padding: "16px" }}>
           <Box>
             <Typography variant="h6" fontWeight="bold">
               Cliente
             </Typography>
             <Typography variant="body1">
-              <b>Nombre:</b> Juan
+              <b>Nombre:</b> {nombre}
             </Typography>
             <Typography variant="body1">
-              <b>Apellido:</b> Pérez
+              <b>Apellido:</b> {apellido}
             </Typography>
             <Typography variant="body1">
               <b>DNI:</b> {dni}
@@ -207,7 +209,27 @@ function App() {
               <b>Género:</b> Masculino
             </Typography>
           </Box>
-        </Card>
+        </Card> */}
+
+        <TextField
+          label="Nombre"
+          variant="outlined"
+          fullWidth
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          placeholder="Ingresa el nombre"
+          sx={{ mt: 2 }}
+        />
+
+        <TextField
+          label="Apellido"
+          variant="outlined"
+          fullWidth
+          value={apellido}
+          onChange={(e) => setApellido(e.target.value)}
+          placeholder="Ingresa el apellido"
+          sx={{ mt: 2 }}
+        />
 
         <TextField
           label="DNI"
