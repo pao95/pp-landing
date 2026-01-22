@@ -62,8 +62,7 @@ function App() {
       console.error("Error generando token:", err);
       if (axios.isAxiosError(err)) {
         setTokenError(
-          `Error: ${err.response?.status} - ${
-            err.response?.statusText || err.message
+          `Error: ${err.response?.status} - ${err.response?.statusText || err.message
           }`
         );
       } else {
@@ -124,21 +123,11 @@ function App() {
         setIsLoading(false);
       }, 1000);
     } catch (err: any) {
-      console.error("Error fetching loan data:", err);
+      console.error("Error fetching loan data:", err.response?.data);
 
-      if (err?.response?.data?.errorType === "LOAN_EVALUATION_ERROR") {
-        setError(
-          `Error: ${err.response?.data.status} - ${err.response?.data.detail}`
-        );
-      } else {
-        if (axios.isAxiosError(err)) {
-          setError(
-            `Error: ${err.response?.status} - ${err.response?.statusText}`
-          );
-        } else {
-          setError("Error fetching loan data.");
-        }
-      }
+      setError(
+        `Error: ${err.response?.data?.message || err.response?.data?.detail}`
+      );
 
       setLoanData(null);
       setIsSecondButtonEnabled(false);
