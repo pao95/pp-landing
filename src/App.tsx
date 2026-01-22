@@ -200,50 +200,62 @@ function App() {
           </Box>
         </Card> */}
 
-        <TextField
-          label="Nombre"
-          variant="outlined"
-          fullWidth
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          placeholder="Ingresa el nombre"
-          sx={{ mt: 2 }}
-        />
+        <Box display="flex" flexDirection="row" gap={2}>
+          <TextField
+            label="Nombre"
+            variant="outlined"
+            fullWidth
+            size="small"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            placeholder="Ingresa el nombre"
+            sx={{ mt: 2 }}
+          />
 
-        <TextField
-          label="Apellido"
-          variant="outlined"
-          fullWidth
-          value={apellido}
-          onChange={(e) => setApellido(e.target.value)}
-          placeholder="Ingresa el apellido"
-          sx={{ mt: 2 }}
-        />
+          <TextField
+            label="Apellido"
+            variant="outlined"
+            fullWidth
+            size="small"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
+            placeholder="Ingresa el apellido"
+            sx={{ mt: 2 }}
+          />
+        </Box>
 
-        <TextField
-          label="DNI"
-          variant="outlined"
-          fullWidth
-          value={dni}
-          onChange={(e) => setDni(e.target.value)}
-          placeholder="Ingresa el DNI"
-          sx={{ mt: 2 }}
-        />
+        <Box display="flex" flexDirection="row" gap={2}>
+          <TextField
+            label="DNI"
+            variant="outlined"
+            fullWidth
+            size="small"
+            value={dni}
+            onChange={(e) => setDni(e.target.value)}
+            placeholder="Ingresa el DNI"
+            sx={{ mt: 2 }}
+          />
 
-        <TextField
-          label="CUIL"
-          variant="outlined"
-          fullWidth
-          value={cuil}
-          onChange={(e) => setCuil(e.target.value)}
-          placeholder="Ingresa el CUIL"
-          sx={{ mt: 2 }}
-        />
+          <TextField
+            label="CUIL"
+            variant="outlined"
+            fullWidth
+            size="small"
+            value={cuil}
+            onChange={(e) => setCuil(e.target.value)}
+            placeholder="Ingresa el CUIL"
+            sx={{ mt: 2 }}
+          />
+        </Box>
+
+
+
 
         <TextField
           label="ID onscore"
           variant="outlined"
           fullWidth
+          size="small"
           value={idOnscore}
           onChange={(e) => setIdOnscore(e.target.value)}
           placeholder="Ingresa el ID onscore"
@@ -256,7 +268,7 @@ function App() {
           onClick={handleGenerateToken}
           fullWidth
           disabled={isGeneratingToken}
-          sx={{ height: 50, fontWeight: 600, fontSize: 16, mt: 2 }}
+        // sx={{ height: 30, fontWeight: 600, fontSize: 16, mt: 2 }}
         >
           {isGeneratingToken ? (
             <CircularProgress size={24} color="inherit" />
@@ -306,7 +318,7 @@ function App() {
           onClick={handleFirstButtonClick}
           fullWidth
           disabled={isLoading || !token}
-          sx={{ height: 50, fontWeight: 600, fontSize: 18, mt: 2 }}
+        // sx={{ height: 50, fontWeight: 600, fontSize: 18, mt: 2 }}
         >
           {isLoading ? (
             <CircularProgress size={24} color="inherit" />
@@ -321,7 +333,7 @@ function App() {
           onClick={handleSecondButtonClick}
           disabled={!isSecondButtonEnabled}
           fullWidth
-          sx={{ height: 50, fontWeight: 600, fontSize: 18 }}
+        // sx={{ height: 50, fontWeight: 600, fontSize: 18 }}
         >
           Continuar con la solicitud
         </Button>
@@ -332,6 +344,7 @@ function App() {
             sx={{
               mt: 2,
               p: 2,
+              mb: 2,
               bgcolor: "#ffebee",
               color: "#b71c1c",
               width: "100%",
