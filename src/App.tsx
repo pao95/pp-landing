@@ -398,23 +398,7 @@ function App() {
           </Paper>
         )}
       </Box>
-              <Typography
-      sx={{
-        color: "#ff0000",
-        fontSize: "12px",
-        position: "fixed",
-        bottom: 20,
-        right: 20,
-        transform: "rotate(-15deg)",
-        pointerEvents: "none",
-        zIndex: 9999,
-      }}
-    >
-      Mirco was here
-    </Typography>
     </Container>
-    
-
   );
 }
 
