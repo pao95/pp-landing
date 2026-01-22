@@ -24,8 +24,8 @@ function App() {
   const [idOnscore, setIdOnscore] = useState<string>("ONS-987654322");
   const [dni, setDni] = useState<string>("12345678");
   const [cuil, setCuil] = useState<string>("20123456779");
-  const [nombre, setNombre] = useState<string>("Mirco");
-  const [apellido, setApellido] = useState<string>("Santoni");
+  const [nombre, setNombre] = useState<string>("");
+  const [apellido, setApellido] = useState<string>("");
   const [loanData, setLoanData] = useState<{
     loanApplicationId: string;
     dni: string;
