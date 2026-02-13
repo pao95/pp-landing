@@ -6,22 +6,23 @@ import {
   Box,
   Paper,
   CircularProgress,
-  Card,
   TextField,
 } from "@mui/material";
 import axios from "axios";
 import "./App.css";
-import { BASE_URL, PROVIDER_REDIRECTION_URL, USE_PROXY } from "./config";
+import { BASE_URL, PROVIDER_REDIRECTION_URL } from "./config";
 
 const TOKEN_ENDPOINT = `${BASE_URL}/user-service/api/v1/external/generate-token`;
 const LOAN_EVALUATION_ENDPOINT = `${BASE_URL}/landing-service/api/v1/loan-evaluation`;
+
+/** ID Onscore fijo para este comercio; se muestra en pantalla y se envía siempre en la evaluación. */
+const ID_ONSCORE_COMERCIO = "000000998159";
 
 function App() {
   const [isSecondButtonEnabled, setIsSecondButtonEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingToken, setIsGeneratingToken] = useState(false);
   const [token, setToken] = useState<string>("");
-  const [idOnscore, setIdOnscore] = useState<string>("ONS-987654322");
   const [dni, setDni] = useState<string>("12345678");
   const [cuil, setCuil] = useState<string>("20123456779");
   const [nombre, setNombre] = useState<string>("");
@@ -39,14 +40,7 @@ function App() {
     setTokenError(null);
     setIsGeneratingToken(true);
     try {
-      let url = TOKEN_ENDPOINT;
-
-      // Si usamos proxy, redirigir a la función de Netlify
-      // if (USE_PROXY) {
-      //   url = `/.netlify/functions/proxy?path=/user-service/api/v1/external/generate-token`;
-      // }
-
-      const response = await axios.get(url, {
+      const response = await axios.get(TOKEN_ENDPOINT, {
         headers: {
           "X-Request-ID": "1",
         },
@@ -79,23 +73,11 @@ function App() {
       return;
     }
 
-    if (!idOnscore) {
-      setError("Por favor, ingresa el CUIT del comercio");
-      return;
-    }
-
     setError(null);
     setIsLoading(true);
     try {
-      let url = LOAN_EVALUATION_ENDPOINT;
-
-      // Si usamos proxy, redirigir a la función de Netlify
-      // if (USE_PROXY) {
-      //   url = `/.netlify/functions/proxy?path=/landing-service/api/v1/loan-evaluation`;
-      // }
-
       const response = await axios.post(
-        url,
+        LOAN_EVALUATION_ENDPOINT,
         {
           dni: dni,
           cuil: cuil,
@@ -105,7 +87,7 @@ function App() {
           apellido: apellido,
           id_sucursal: "001",
           dni_usuario: "34437311",
-          id_onscore: idOnscore,
+          id_onscore: ID_ONSCORE_COMERCIO,
         },
         {
           headers: {
@@ -145,7 +127,7 @@ function App() {
       console.log(loanData);
       const url = `${PROVIDER_REDIRECTION_URL}/new-loan?applicationId=${loanData.loanApplicationId}&token=${token}`;
 
-      window.location.href = url;
+      window.open(url, "_blank");
     }
   };
 
@@ -176,29 +158,6 @@ function App() {
         >
           RapiCompras
         </Typography>
-
-        {/* <Card sx={{ padding: "16px" }}>
-          <Box>
-            <Typography variant="h6" fontWeight="bold">
-              Cliente
-            </Typography>
-            <Typography variant="body1">
-              <b>Nombre:</b> {nombre}
-            </Typography>
-            <Typography variant="body1">
-              <b>Apellido:</b> {apellido}
-            </Typography>
-            <Typography variant="body1">
-              <b>DNI:</b> {dni}
-            </Typography>
-            <Typography variant="body1">
-              <b>CUIL:</b> {cuil}
-            </Typography>
-            <Typography variant="body1">
-              <b>Género:</b> Masculino
-            </Typography>
-          </Box>
-        </Card> */}
 
         <Box display="flex" flexDirection="row" gap={2}>
           <TextField
@@ -251,16 +210,23 @@ function App() {
 
 
 
-        <TextField
-          label="ID onscore"
-          variant="outlined"
-          fullWidth
-          size="small"
-          value={idOnscore}
-          onChange={(e) => setIdOnscore(e.target.value)}
-          placeholder="Ingresa el ID onscore"
-          sx={{ mt: 2 }}
-        />
+        <Paper
+          elevation={3}
+          sx={{
+            mt: 2,
+            p: 2,
+            bgcolor: "#e0e0e0",
+            color: "#424242",
+            width: "100%",
+          }}
+        >
+          <Typography variant="body2" fontWeight="bold">
+            Comercio
+          </Typography>
+          <Typography variant="caption" sx={{ wordBreak: "break-all" }}>
+            {ID_ONSCORE_COMERCIO}
+          </Typography>
+        </Paper>
 
         <Button
           variant="contained"
@@ -268,7 +234,6 @@ function App() {
           onClick={handleGenerateToken}
           fullWidth
           disabled={isGeneratingToken}
-        // sx={{ height: 30, fontWeight: 600, fontSize: 16, mt: 2 }}
         >
           {isGeneratingToken ? (
             <CircularProgress size={24} color="inherit" />
@@ -333,7 +298,6 @@ function App() {
           onClick={handleSecondButtonClick}
           disabled={!isSecondButtonEnabled}
           fullWidth
-        // sx={{ height: 50, fontWeight: 600, fontSize: 18 }}
         >
           Continuar con la solicitud
         </Button>
@@ -388,12 +352,6 @@ function App() {
                 <b>Pre-approved Amount:</b> $
                 {loanData.preApprovedAmount.toLocaleString()}
               </Typography>
-              {/* <Typography variant="body1">
-                <b>Token:</b>{" "}
-                <span style={{ wordBreak: "break-all" }}>
-                  {loanData.token.slice(0, 40)}...
-                </span>
-              </Typography> */}
             </Box>
           </Paper>
         )}
